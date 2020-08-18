@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=puzzle-jigsaw
+Comment=Tiling puzzle that requires the assembly mosaiced pieces
+GenericName=puzzle jigsaw
+Type=Application
+Exec=puzzle-jigsaw
+Icon=puzzle-jigsaw
+Categories=Game;
+Keywords=puzzle;jigsaw;logic;game;
