@@ -553,6 +553,8 @@ void MainWindow::newAlignment(){
         quint32 y=qrand()%(centralWidget->height()-puzzleHeight-100);
 #endif
         item->move(0-widgetTable->x()+x,0-widgetTable->y()+y);
+
+        setPicturePuzzle(item,"effect1");
     }
     boxMessage->hide();
 }
