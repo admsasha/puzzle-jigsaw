@@ -520,7 +520,7 @@ void MainWindow::dockItem(QLabel *pItem){
 // open image from file (new game)
 void MainWindow::newPuzzle(){
 
-    QString filename = QFileDialog::getOpenFileName(this,tr("open images"),QString(PATH_USERDATA)+"/samples",tr("Images (*.png *.xpm *.jpg)"));
+    QString filename = QFileDialog::getOpenFileName(this,tr("open images"),QString(PATH_USERDATA)+"/samples",tr("Images (*.png *.xpm *.jpg *.jpeg *.tiff *.webp *.bmp)"));
     if (filename.isEmpty()) return;
 
     puzzleFilename = QFileInfo(filename).fileName();
