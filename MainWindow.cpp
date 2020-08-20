@@ -151,7 +151,7 @@ void MainWindow::createPuzzle(){
     listItems.clear();
 
     QString typePuzzle = "1";
-
+    int zOrder=0;
 
     for (int x=0;x<countX;x++){
         for (int y=0;y<countY;y++){
@@ -233,10 +233,11 @@ void MainWindow::createPuzzle(){
             puzzle->setProperty("cell_x",x);
             puzzle->setProperty("cell_y",y);
             puzzle->setProperty("type_puzzle",typePuzzle);
-            puzzle->setProperty("zOrder",0);
+            puzzle->setProperty("zOrder",zOrder);
             setPicturePuzzle(puzzle,"effect1");
             puzzle->show();
             listItems.push_back(std::move(puzzle));
+            zOrder++;
         }
     }
 }
