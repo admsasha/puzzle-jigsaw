@@ -245,7 +245,7 @@ void MainWindow::createPuzzle(){
 // Setting the shape of the puzzle on the image
 void MainWindow::setPicturePuzzle(QLabel *item, const QString &effect){
     QImage pix_temp = puzzlePixmap.toImage();
-    QPixmap pix(pix_temp.width()+puzzleBorderWidth*2,pix_temp.height()+puzzleBorderHeight*2);
+    QPixmap pix(pix_temp.width()+puzzleOrigWidth*2,pix_temp.height()+puzzleOrigHeight*2);
 
     QPainter painterPix(&pix);
     painterPix.drawImage(puzzleBorderWidth,puzzleBorderHeight,pix_temp,0,0);
