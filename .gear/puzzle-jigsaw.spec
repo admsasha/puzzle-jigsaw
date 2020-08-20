@@ -1,5 +1,5 @@
 Name:           puzzle-jigsaw
-Version:        1.0.0
+Version:        1.0.1
 Release:        alt1
 Summary:        Tiling puzzle that requires the assembly mosaiced pieces
 Group:          Games/Puzzles
@@ -36,5 +36,8 @@ lrelease-qt5 %{name}.pro
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 
 %changelog
+* Thu Aug 20 2020 Alexander Danilov  <admsasha@altlinux.org> 1.0.1-alt1
+- release 1.0.1
+
 * Tue Aug 18 2020 Alexander Danilov  <admsasha@altlinux.org> 1.0.0-alt1
 - release 1.0.0
