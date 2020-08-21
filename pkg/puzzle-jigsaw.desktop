@@ -1,10 +1,14 @@
 [Desktop Entry]
 Name=puzzle-jigsaw
 Comment=Tiling puzzle that requires the assembly mosaiced pieces
-Comment[ru]=Головоломка, которая требует сборки мозаичных частей.
 GenericName=Puzzle jigsaw
 Type=Application
 Exec=puzzle-jigsaw
 Icon=puzzle-jigsaw
 Categories=Game;LogicGame;
 Keywords=puzzle;jigsaw;logic;game;
+
+
+# Translations
+GenericName[ru]=Мозаичный пазл
+Comment[ru]=Головоломка, которая требует сборки мозаичных частей.
