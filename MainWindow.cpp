@@ -299,6 +299,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
                 obj==btnAbout or obj==btnExit
         ){
             buttonAction="click";
+            mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
             return true;
         }
 
@@ -401,7 +402,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     }
 
     if (event->type() == QEvent::MouseMove){
-        buttonAction="move";
+        if (mousePosition!=QPointF(mouseEvent->globalX(),mouseEvent->globalY())){
+            buttonAction="move";
+        }
         if (selectItem!=nullptr){
             selectItem->move(selectItem->x()+ (mouseEvent->globalX()-mousePosition.x()),selectItem->y()+ (mouseEvent->globalY()-mousePosition.y()));
             mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
