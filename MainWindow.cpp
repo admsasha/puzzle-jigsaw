@@ -73,49 +73,49 @@ MainWindow::MainWindow(QWidget *parent) :
 
     btnNewPuzzle = new QLabel(this);
     btnNewPuzzle->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/new.png"));
-    btnNewPuzzle->setToolTip(tr("Open file"));
+    btnNewPuzzle->setToolTip(tr("Open file")+"  (Ctrl+O)");
     btnNewPuzzle->setGeometry(0,32,80,80);
     btnNewPuzzle->setScaledContents(true);
     btnNewPuzzle->installEventFilter(this);
 
     btnSavePuzzle = new QLabel(this);
     btnSavePuzzle->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/save.png"));
-    btnSavePuzzle->setToolTip(tr("Save puzzle to file"));
+    btnSavePuzzle->setToolTip(tr("Save puzzle to file")+"  (Ctrl+S)");
     btnSavePuzzle->setScaledContents(true);
     btnSavePuzzle->setGeometry(0,124,80,80);
     btnSavePuzzle->installEventFilter(this);
 
     btnLoadPuzzle = new QLabel(this);
     btnLoadPuzzle->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/open.png"));
-    btnLoadPuzzle->setToolTip(tr("Load puzzle from file"));
+    btnLoadPuzzle->setToolTip(tr("Load puzzle from file")+"  (Ctrl+L)");
     btnLoadPuzzle->setScaledContents(true);
     btnLoadPuzzle->setGeometry(0,216,80,80);
     btnLoadPuzzle->installEventFilter(this);
 
     btnAlignment = new QLabel(this);
     btnAlignment->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/alignment.png"));
-    btnAlignment->setToolTip(tr("Alignment puzzle"));
+    btnAlignment->setToolTip(tr("Alignment puzzle")+"  (Ctrl+N)");
     btnAlignment->setScaledContents(true);
     btnAlignment->setGeometry(0,308,80,80);
     btnAlignment->installEventFilter(this);
 
     btnPreview = new QLabel(this);
     btnPreview->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/preview.png"));
-    btnPreview->setToolTip(tr("Show/hide preview"));
+    btnPreview->setToolTip(tr("Show/hide preview")+"  (Ctrl+P)");
     btnPreview->setGeometry(0,400,80,80);
     btnPreview->setScaledContents(true);
     btnPreview->installEventFilter(this);
 
     btnAbout = new QLabel(this);
     btnAbout->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/about.png"));
-    btnAbout->setToolTip(tr("About"));
+    btnAbout->setToolTip(tr("About")+"  (Ctrl+I)");
     btnAbout->setScaledContents(true);
     btnAbout->setGeometry(0,492,80,80);
     btnAbout->installEventFilter(this);
 
     btnExit = new QLabel(this);
     btnExit->setPixmap(QPixmap(QString(PATH_USERDATA)+"/images/buttons/exit.png"));
-    btnExit->setToolTip(tr("Exit"));
+    btnExit->setToolTip(tr("Exit")+"  (Ctrl+Q)");
     btnExit->setScaledContents(true);
     btnExit->setGeometry(0,600,80,80);
     btnExit->installEventFilter(this);
@@ -417,6 +417,66 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
 
 void MainWindow::wheelEvent(QWheelEvent */*event*/){
 
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event){
+    if (event->key()==Qt::Key_Up){
+        widgetTable->move(widgetTable->x(),widgetTable->y()+32);
+
+    }
+    if (event->key()==Qt::Key_Down){
+        widgetTable->move(widgetTable->x(),widgetTable->y()-32);
+
+    }
+    if (event->key()==Qt::Key_Right){
+        widgetTable->move(widgetTable->x()-32,widgetTable->y());
+
+    }
+    if (event->key()==Qt::Key_Left){
+        widgetTable->move(widgetTable->x()+32,widgetTable->y());
+    }
+
+
+    // open image
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_O){
+        newPuzzle();
+    }
+
+    // save puzzle
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_S){
+        savePuzzle();
+    }
+
+    // load puzzle
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_L){
+        loadPuzzle();
+    }
+
+    // preview
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_P){
+        if (!preview->isVisible()){
+            preview->show();
+            preview->move(this->width()-preview->width()-20,this->height()-preview->height()-20);
+        }else{
+            preview->hide();
+        }
+    }
+
+    // alignment
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_N){
+        newAlignment();
+
+    }
+
+    // about
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_I){
+        about();
+    }
+
+    // exit
+    if (event->modifiers()==Qt::ControlModifier && event->key()==Qt::Key_Q){
+        close();
+    }
 }
 
 bool MainWindow::isWon(){

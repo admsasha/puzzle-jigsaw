@@ -68,6 +68,7 @@ class MainWindow : public QMainWindow {
         void resizeEvent(QResizeEvent *) override;
         bool eventFilter(QObject *obj, QEvent *event) override;
         void wheelEvent ( QWheelEvent * event ) override;
+        void keyPressEvent(QKeyEvent *event) override;
 
     private slots:
         void newPuzzle();
