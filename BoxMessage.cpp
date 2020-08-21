@@ -44,16 +44,19 @@ bool BoxMessage::eventFilter(QObject *obj, QEvent *event){
     if (event->type() == QEvent::MouseButtonPress){
         if (obj==lblText){
             mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
+            isWasMoved=false;
             isMove=true;
             return true;
         }
     }
     if (event->type() == QEvent::MouseButtonRelease){
+        if (!isWasMoved) emit clicked();
         isMove=false;
     }
 
     if (event->type() == QEvent::MouseMove){
         if (isMove==true){
+            isWasMoved=true;
             this->move(this->x()+ (mouseEvent->globalX()-mousePosition.x()),this->y()+ (mouseEvent->globalY()-mousePosition.y()));
             mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
         }

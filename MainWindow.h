@@ -46,6 +46,8 @@ class MainWindow : public QMainWindow {
         QLabel *btnPreview;
         QLabel *btnExit;
 
+        QString buttonAction;
+
         WidgetPreview *preview;
         BoxMessage *boxMessage;
 
@@ -57,7 +59,6 @@ class MainWindow : public QMainWindow {
         bool isWon();
         void dockItem(QLabel *pItem);
 
-        void newPuzzle();
         void newAlignment();
         void savePuzzle();
         void loadPuzzle();
@@ -69,6 +70,7 @@ class MainWindow : public QMainWindow {
         void wheelEvent ( QWheelEvent * event ) override;
 
     private slots:
+        void newPuzzle();
 };
 
 #endif // MAINWINDOW_H

@@ -5,6 +5,7 @@
 #include <QEvent>
 
 class BoxMessage : public QLabel {
+    Q_OBJECT
     public:
         BoxMessage(QWidget *parent = nullptr);
         ~BoxMessage();
@@ -16,10 +17,14 @@ class BoxMessage : public QLabel {
 
         QPointF mousePosition;
         bool isMove;
+        bool isWasMoved;
 
     protected:
         void resizeEvent(QResizeEvent */*e*/) override;
         bool eventFilter(QObject *obj, QEvent *event) override;
+
+    signals:
+        void clicked();
 
 };
 

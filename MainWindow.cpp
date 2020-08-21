@@ -129,6 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
     boxMessage->setGeometry((this->width()-700)/2-50,250,700,200);
     boxMessage->setText(tr("Choose an image\n for the puzzle"));
     boxMessage->show();
+    connect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
 
 }
 
@@ -297,6 +298,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
                 obj==btnLoadPuzzle or obj==btnAlignment or
                 obj==btnAbout or obj==btnExit
         ){
+            buttonAction="click";
             return true;
         }
 
@@ -346,15 +348,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
     }
 
     if (event->type() == QEvent::MouseButtonRelease){
-        if (obj==btnPreview){
-            if (!preview->isVisible()){
-                preview->show();
-                preview->move(this->width()-preview->width()-20,this->height()-preview->height()-20);
-            }else{
-                preview->hide();
-            }
-        }
-
         if (selectItem!=nullptr){
             setPicturePuzzle(selectItem,"effect1");
             dockItem(selectItem);
@@ -370,34 +363,45 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
         }
 
 
-        if (obj==btnNewPuzzle){
-            newPuzzle();
-        }
-        if (obj==btnSavePuzzle){
-            savePuzzle();
-        }
-        if (obj==btnLoadPuzzle){
-            loadPuzzle();
-        }
-        if (obj==btnAlignment){
-            newAlignment();
-        }
+        if (buttonAction=="click"){
+            if (obj==btnPreview){
+                if (!preview->isVisible()){
+                    preview->show();
+                    preview->move(this->width()-preview->width()-20,this->height()-preview->height()-20);
+                }else{
+                    preview->hide();
+                }
+            }
 
-        if (obj==btnAbout){
-            about();
-        }
+            if (obj==btnNewPuzzle){
+                newPuzzle();
+            }
+            if (obj==btnSavePuzzle){
+                savePuzzle();
+            }
+            if (obj==btnLoadPuzzle){
+                loadPuzzle();
+            }
+            if (obj==btnAlignment){
+                newAlignment();
+            }
 
-        if (obj==btnExit){
-            QApplication::closeAllWindows();
-            close();
-        }
+            if (obj==btnAbout){
+                about();
+            }
 
+            if (obj==btnExit){
+                QApplication::closeAllWindows();
+                close();
+            }
+        }
 
         selectItem=nullptr;
         isMoveWidgetTable=false;
     }
 
     if (event->type() == QEvent::MouseMove){
+        buttonAction="move";
         if (selectItem!=nullptr){
             selectItem->move(selectItem->x()+ (mouseEvent->globalX()-mousePosition.x()),selectItem->y()+ (mouseEvent->globalY()-mousePosition.y()));
             mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
@@ -407,8 +411,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
             mousePositionWidgetTable=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
         }
     }
-
-
 
     return QObject::eventFilter(obj, event);
 }
@@ -523,6 +525,9 @@ void MainWindow::newPuzzle(){
 
     QString filename = QFileDialog::getOpenFileName(this,tr("open images"),QString(PATH_USERDATA)+"/samples",tr("Images (*.png *.xpm *.jpg *.jpeg *.tiff *.webp *.bmp)"));
     if (filename.isEmpty()) return;
+
+    disconnect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
+
 
     puzzleFilename = QFileInfo(filename).fileName();
     puzzlePixmap = QPixmap(filename);
