@@ -73,6 +73,10 @@ data_icons48.path = /usr/share/icons/hicolor/48x48/apps/
 data_icons48.files = pkg/icons/48x48/puzzle-jigsaw.png
 INSTALLS += data_icons48
 
+data_iconSvg.path = /usr/share/icons/hicolor/scalable/apps/
+data_iconSvg.files = images/puzzle-jigsaw.svg
+INSTALLS += data_iconSvg
+
 
 # Input
 SOURCES += main.cpp  \
