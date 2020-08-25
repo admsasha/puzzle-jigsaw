@@ -55,8 +55,10 @@ bool BoxMessage::eventFilter(QObject *obj, QEvent *event){
     }
 
     if (event->type() == QEvent::MouseMove){
-        if (isMove==true){
+        if (mousePosition!=QPointF(mouseEvent->globalX(),mouseEvent->globalY())){
             isWasMoved=true;
+        }
+        if (isMove==true){
             this->move(this->x()+ (mouseEvent->globalX()-mousePosition.x()),this->y()+ (mouseEvent->globalY()-mousePosition.y()));
             mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
         }
