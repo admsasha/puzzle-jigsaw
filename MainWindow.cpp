@@ -44,6 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle(tr("Puzzle jigsaw v%1").arg(QString(PUZZLE_VERSION)));
     this->setWindowIcon(QIcon(QString(PATH_USERDATA)+"/images/puzzle.png"));
 
+    conf =  new QSettings(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)+"/puzzle-jigsaw.ini", QSettings::IniFormat);
+
 
     selectItem=nullptr;
     isMoveWidgetTable=false;
@@ -586,8 +588,12 @@ void MainWindow::dockItem(QLabel *pItem){
 // open image from file (new game)
 void MainWindow::newPuzzle(){
 
-    QString filename = QFileDialog::getOpenFileName(this,tr("open images"),QString(PATH_USERDATA)+"/samples",tr("Images (*.png *.xpm *.jpg *.jpeg *.tiff *.webp *.bmp)"));
+    QString lastPath = conf->value("global/lastpath",QString(PATH_USERDATA)+"/samples").toString();
+
+    QString filename = QFileDialog::getOpenFileName(this,tr("open images"),lastPath,tr("Images (*.png *.xpm *.jpg *.jpeg *.tiff *.webp *.bmp)"));
     if (filename.isEmpty()) return;
+
+    conf->setValue("global/lastpath",QFileInfo(filename).path());
 
     disconnect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
 

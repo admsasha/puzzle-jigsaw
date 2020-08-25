@@ -11,6 +11,7 @@
 #include <QEvent>
 #include <QWheelEvent>
 #include <QLabel>
+#include <QSettings>
 
 #include "WidgetPreview.h"
 #include "BoxMessage.h"
@@ -45,6 +46,8 @@ class MainWindow : public QMainWindow {
         QLabel *btnAbout;
         QLabel *btnPreview;
         QLabel *btnExit;
+
+        QSettings *conf;
 
         QString buttonAction;
 
