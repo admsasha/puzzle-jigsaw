@@ -57,90 +57,90 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="76"/>
+        <location filename="../MainWindow.cpp" line="78"/>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="83"/>
+        <location filename="../MainWindow.cpp" line="85"/>
         <source>Save puzzle to file</source>
         <translation>Сохранить пазл в файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="90"/>
+        <location filename="../MainWindow.cpp" line="92"/>
         <source>Load puzzle from file</source>
         <translation>Открыть пазл из файла</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="97"/>
+        <location filename="../MainWindow.cpp" line="99"/>
         <source>Alignment puzzle</source>
         <translation>Перемешать пазлы</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="104"/>
+        <location filename="../MainWindow.cpp" line="106"/>
         <source>Show/hide preview</source>
         <translation>Показать/скрыть предварительный просмотр</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="111"/>
+        <location filename="../MainWindow.cpp" line="113"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="118"/>
+        <location filename="../MainWindow.cpp" line="120"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="130"/>
+        <location filename="../MainWindow.cpp" line="132"/>
         <source>Choose an image
  for the puzzle</source>
         <translation>Выберите картинку
  для пазла</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="142"/>
+        <location filename="../MainWindow.cpp" line="144"/>
         <source>Puzzle [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="361"/>
+        <location filename="../MainWindow.cpp" line="363"/>
         <source>You win!</source>
         <translation>Вы выиграли!</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="589"/>
+        <location filename="../MainWindow.cpp" line="593"/>
         <source>open images</source>
         <translation>Открытыть картинку</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="589"/>
+        <location filename="../MainWindow.cpp" line="593"/>
         <source>Images (*.png *.xpm *.jpg *.jpeg *.tiff *.webp *.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="639"/>
+        <location filename="../MainWindow.cpp" line="645"/>
         <source>save puzzle</source>
         <translation>Сохранить пазл</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="639"/>
-        <location filename="../MainWindow.cpp" line="675"/>
+        <location filename="../MainWindow.cpp" line="645"/>
+        <location filename="../MainWindow.cpp" line="681"/>
         <source>*.puzzle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="675"/>
+        <location filename="../MainWindow.cpp" line="681"/>
         <source>load puzzle</source>
         <translation>Открыть пазл</translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="680"/>
+        <location filename="../MainWindow.cpp" line="686"/>
         <source>puzzle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MainWindow.cpp" line="680"/>
+        <location filename="../MainWindow.cpp" line="686"/>
         <source>Can&apos;t open the file %1</source>
         <translation>Не могу открыть файл %1</translation>
     </message>
