@@ -644,6 +644,9 @@ void MainWindow::savePuzzle(){
 
     QString filename = QFileDialog::getSaveFileName(this,tr("save puzzle"),dir.path(),tr("*.puzzle"));
     if (filename.isEmpty()) return;
+    if (QFileInfo(filename).suffix().isEmpty()){
+        filename.append(".puzzle");
+    }
 
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)){
