@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent) :
     widgetTable = new QLabel(centralWidget);
     widgetTable->installEventFilter(this);
     widgetTable->setFrameShape(QFrame::Box);
-    widgetTable->setGeometry(-1000,-1000,5000,5000);
+    widgetTable->setGeometry(-5000,-5000,10000,10000);
 
     // background form buttons
     backgroundButtons = new QLabel(this);
