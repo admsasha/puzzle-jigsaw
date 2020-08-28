@@ -12,3 +12,6 @@ Keywords=puzzle;jigsaw;logic;game;
 # Translations
 GenericName[ru]=Мозаичный пазл
 Comment[ru]=Головоломка, которая требует сборки мозаичных частей.
+GenericName[pt_BR]=Quebra-cabeça
+Comment[pt_BR]=Um quebra-cabeça que requer a montagem de peças em mosaico
+Keywords[pt_BR]=quebra-cabeça;lógica;jogo
