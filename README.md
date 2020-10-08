@@ -11,11 +11,6 @@ The game design rights belong to Rouslan Fialkovski (ruslan.fialkovsk@mail.ru).
 
 Read samples/credits.txt for information about samples of images of puzzles and their licenses.
 
-All images are allowed to be redistributed without modification, but not used for commercial purposes, 
-attribution is required (except for images from the 'samples' folder, 
-which are licensed according to the samples/credits.txt file). 
-
-
 puzzle-jigsaw  is a tiling puzzle that requires the assembly 
 of often oddly shaped interlocking and mosaiced pieces.
 
@@ -63,10 +58,6 @@ General Public License (GPLv3+); либо версии 3 Лицензии, ли�
 
 Читайте samples/credits.txt для получения информации о примерах изображений пазлов и их лицензий.
  
-Все изображения разрешено распространять без модификации, но запрещено использовать в коммерческих целях, 
-указание авторства обязательно (кроме изображений из каталога samples, 
-которые имеют лицензии согласно файла samples/credits.txt).
-
 puzzle-jigsaw - это мозаичная головоломка, которая требует сборки
 часто странной формы взаимосвязанных и мозаичных частей.
 
