@@ -57,6 +57,8 @@ class MainWindow : public QMainWindow {
         QString puzzleFilename;
         QPixmap puzzlePixmap;
 
+        void loadImage(QString filename);
+
         void createPuzzle();
         void setPicturePuzzle(QLabel *item, const QString &effect="");
         bool isWon();

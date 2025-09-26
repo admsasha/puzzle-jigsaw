@@ -13,6 +13,7 @@
 #include <QScreen>
 #include <QStandardPaths>
 #include <QDir>
+#include <QTimer>
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #include <QRandomGenerator>
 #endif
@@ -133,11 +134,31 @@ MainWindow::MainWindow(QWidget *parent) :
     boxMessage->show();
     connect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
 
+
+    QString startImage = "";
+
+    for (const QString &arg : QApplication::arguments()){
+        QStringList pair = arg.split("=");
+        if (pair.size()==2){
+            if (pair.at(0) == "--image"){
+                startImage=pair.at(1);
+            }
+        }
+    }
+
+    // Загружаем картинку указанную в параметрах
+    QTimer::singleShot(100, [this,startImage]() {
+            if (!startImage.isEmpty()){
+                loadImage(startImage);
+            }
+        }
+    );
 }
 
 MainWindow::~MainWindow(){
 
 }
+
 
 // Creating a puzzle from an puzzlePixmap
 void MainWindow::createPuzzle(){
@@ -595,6 +616,16 @@ void MainWindow::newPuzzle(){
 
     conf->setValue("global/lastpath",QFileInfo(filename).path());
 
+    loadImage(filename);
+}
+
+void MainWindow::loadImage(QString filename){
+    QFile file(filename);
+    if (!file.exists()){
+        QMessageBox::critical(this,tr("open image"),tr("the %s file cannot be opened").arg(filename));
+        return;
+    }
+
     disconnect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
 
 
@@ -610,6 +641,7 @@ void MainWindow::newPuzzle(){
 
     newAlignment();
 }
+
 
 // new alignment
 void MainWindow::newAlignment(){
