@@ -62,6 +62,7 @@ class MainWindow : public QMainWindow {
         void createPuzzle();
         void setPicturePuzzle(QLabel *item, const QString &effect="");
         bool isWon();
+        bool run_game;
         void dockItem(QLabel *pItem);
 
         void newAlignment();

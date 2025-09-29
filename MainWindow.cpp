@@ -135,6 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
 
 
+    run_game = false;
     QString startImage = "";
 
     for (const QString &arg : QApplication::arguments()){
@@ -328,37 +329,39 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
 
         if (obj==widgetTable){
             if(mouseEvent->buttons() == Qt::LeftButton){
-                QLabel *itemPuzzle = nullptr;
-                int zOrder=0;
-                for (auto &it:listItems){
-                    if (mouseEvent->x()>it->x() and mouseEvent->x()<it->x()+it->width()
-                        and mouseEvent->y()>it->y() and mouseEvent->y()<it->y()+it->height()
-                    ){
-                        QString typePuzzle = it->property("type_puzzle").toString();
-                        QImage puzzle_mask(QString(PATH_USERDATA)+"/images/pieces/piece"+typePuzzle+".png");
-                        QRgb rgb = puzzle_mask.pixel(mouseEvent->x()- it->x(),mouseEvent->y()-it->y());
-                        if (qAlpha(rgb)!=0){
-                            if (it->property("zOrder").toInt()>zOrder or itemPuzzle == nullptr){
-                                itemPuzzle=it;
-                                zOrder=it->property("zOrder").toInt();
+                if (run_game){
+                    QLabel *itemPuzzle = nullptr;
+                    int zOrder=0;
+                    for (auto &it:listItems){
+                        if (mouseEvent->x()>it->x() and mouseEvent->x()<it->x()+it->width()
+                            and mouseEvent->y()>it->y() and mouseEvent->y()<it->y()+it->height()
+                        ){
+                            QString typePuzzle = it->property("type_puzzle").toString();
+                            QImage puzzle_mask(QString(PATH_USERDATA)+"/images/pieces/piece"+typePuzzle+".png");
+                            QRgb rgb = puzzle_mask.pixel(mouseEvent->x()- it->x(),mouseEvent->y()-it->y());
+                            if (qAlpha(rgb)!=0){
+                                if (it->property("zOrder").toInt()>zOrder or itemPuzzle == nullptr){
+                                    itemPuzzle=it;
+                                    zOrder=it->property("zOrder").toInt();
+                                }
                             }
                         }
                     }
-                }
 
-                if (itemPuzzle!=nullptr){
-                    selectItem=itemPuzzle;
-                    mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
-                    selectItem->raise();
+                    if (itemPuzzle!=nullptr){
+                        selectItem=itemPuzzle;
+                        mousePosition=QPointF(mouseEvent->globalX(),mouseEvent->globalY());
+                        selectItem->raise();
 
-                    int selectZOrder=selectItem->property("zOrder").toInt();
-                    for (auto &it:listItems){
-                        if (it->property("zOrder").toInt()>selectZOrder){
-                            it->setProperty("zOrder",it->property("zOrder").toInt()-1);
+                        int selectZOrder=selectItem->property("zOrder").toInt();
+                        for (auto &it:listItems){
+                            if (it->property("zOrder").toInt()>selectZOrder){
+                                it->setProperty("zOrder",it->property("zOrder").toInt()-1);
+                            }
                         }
+                        selectItem->setProperty("zOrder",listItems.size());
+                        setPicturePuzzle(selectItem,"effect2");
                     }
-                    selectItem->setProperty("zOrder",listItems.size());
-                    setPicturePuzzle(selectItem,"effect2");
                 }
             }
 
@@ -383,6 +386,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event){
                 boxMessage->setGeometry((this->width()-500)/2,(this->height()-100)/2,500,100);
                 boxMessage->setText(tr("You win!"));
                 boxMessage->show();
+                run_game = false;
             }
         }
 
@@ -627,6 +631,7 @@ void MainWindow::loadImage(QString filename){
     }
 
     disconnect(boxMessage,&BoxMessage::clicked,this,&MainWindow::newPuzzle);
+    connect(boxMessage,&BoxMessage::clicked,&BoxMessage::hide);
 
 
     puzzleFilename = QFileInfo(filename).fileName();
@@ -640,6 +645,7 @@ void MainWindow::loadImage(QString filename){
     boxMessage->hide();
 
     newAlignment();
+    run_game = true;
 }
 
 
@@ -664,6 +670,7 @@ void MainWindow::newAlignment(){
         setPicturePuzzle(item,"effect1");
     }
     boxMessage->hide();
+    run_game = true;
 }
 
 
@@ -703,7 +710,6 @@ void MainWindow::savePuzzle(){
     out << widgetTable->x() << ";" << widgetTable->y() << "\n";
 
     file.close();
-
 }
 
 // load game from file
@@ -752,6 +758,8 @@ void MainWindow::loadPuzzle(){
 
     file.close();
     boxMessage->hide();
+
+    run_game=true;
 }
 
 void MainWindow::about(){
